@@ -1,11 +1,18 @@
-# My Personal Project
+# **Dead Ahead**
 
-## A subtitle
+## Zombie survival game
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+In this game, the player will control a character that will be able to move in 
+4 directions in 2D. The point of the game is to **kill the numerous zombies** that 
+will be crawling towards the player from all directions using the weapons available. 
+**Survive** for as many rounds as you can and beat your personal record!
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+*Target audience*:
+- Children and teenagers
+- Gamers who enjoy retro games
+- *Anyone* who just wants to kill some free time with a fun game!
+
+**Motivation behind the project**:
+I have always been passionate about game development because it lets me merge my
+creativity and technical skills to build meaningful products that I care about and
+that allow me to have hours of fun developing and using. 
