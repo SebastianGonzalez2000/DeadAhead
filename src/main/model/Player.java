@@ -34,7 +34,6 @@ public class Player {
                 return;
             case EAST:
                 xc += speed;
-                return;
         }
     }
 

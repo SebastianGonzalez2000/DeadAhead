@@ -68,4 +68,24 @@ class PlayerTest {
         assertEquals(100, p.getY());
     }
 
+    // tests for getters and setters for completion
+
+    @Test
+    public void testSetX() {
+        assertEquals(100, p.getX());
+
+        p.setX(120);
+
+        assertEquals(120, p.getX());
+    }
+
+    @Test
+    public void testSetY() {
+        assertEquals(100, p.getY());
+
+        p.setY(120);
+
+        assertEquals(120, p.getY());
+    }
+
 }
