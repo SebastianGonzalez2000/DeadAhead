@@ -32,7 +32,7 @@ public class Player {
             case WEST:
                 xc += -speed;
                 return;
-            case EAST:
+            default:
                 xc += speed;
         }
     }
