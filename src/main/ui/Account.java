@@ -19,7 +19,7 @@ public class Account implements Writable {
     private int highScore;
     private int currentScore;
 
-    // EFFECTS: creates an account with no username or password
+    // EFFECTS: creates an account with given username, password, arsenal, high score, and current score
     public Account(String username, String password, Arsenal arsenal, int highScore, int currentScore) {
         this.username = username;
         this.password = password;
