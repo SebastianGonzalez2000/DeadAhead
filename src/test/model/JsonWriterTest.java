@@ -55,12 +55,12 @@ public class JsonWriterTest {
             acc.getArsenal().collectWeapon(new RocketLauncher(player));
             acc.getArsenal().collectWeapon(new LandMine(player));
 
-            JsonWriter writer = new JsonWriter("./data/testWriterInitialArsenal.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterFullArsenal.json");
             writer.open();
             writer.write(acc);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterInitialArsenal.json");
+            JsonReader reader = new JsonReader("./data/testWriterFullArsenal.json");
             acc = reader.read();
             assertEquals("Sebastian", acc.getUsername());
             assertEquals("123", acc.getPassword());
