@@ -76,7 +76,7 @@ public class JsonReader {
             arsenal.collectWeapon(new RocketLauncher(player));
         } else if (weapon.equals("MINE")) {
             arsenal.collectWeapon(new LandMine(player));
-        } else if (weapon.equals("WALL")) {
+        } else {
             arsenal.collectWeapon(new Wall(player));
         }
     }

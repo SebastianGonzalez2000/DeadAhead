@@ -73,4 +73,20 @@ public class JsonReaderTest {
         }
     }
 
+    @Test
+    void invalidWeaponPassedIn() {
+        JsonReader reader = new JsonReader("./data/testReaderGeneralArsenal.json");
+
+        try {
+            Account acc = reader.read();
+            assertEquals("Sebastian", acc.getUsername());
+            assertEquals("123", acc.getPassword());
+            assertEquals(2, acc.getWeapons().size());
+            assertEquals(WeaponType.HANDGUN, acc.getWeapons().get(0).getWeaponType());
+            assertEquals(WeaponType.WALL, acc.getWeapons().get(1).getWeaponType());
+        } catch (IOException e) {
+            fail("IOException was thrown and caught when it shouldn't have.");
+        }
+    }
+
 }
