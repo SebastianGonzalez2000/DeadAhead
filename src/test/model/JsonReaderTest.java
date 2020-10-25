@@ -33,6 +33,8 @@ public class JsonReaderTest {
             assertEquals("123", acc.getPassword());
             assertEquals(1, acc.getWeapons().size());
             assertEquals(WeaponType.HANDGUN, acc.getWeapons().get(0).getWeaponType());
+            assertEquals(100, acc.getHighScore());
+            assertEquals(69, acc.getCurrentScore());
         } catch (IOException e) {
             fail("IOException was thrown and caught when it shouldn't have.");
         }
@@ -52,6 +54,8 @@ public class JsonReaderTest {
             assertEquals(WeaponType.UZI, acc.getWeapons().get(2).getWeaponType());
             assertEquals(WeaponType.LAUNCHER, acc.getWeapons().get(3).getWeaponType());
             assertEquals(WeaponType.MINE, acc.getWeapons().get(4).getWeaponType());
+            assertEquals(0, acc.getHighScore());
+            assertEquals(0, acc.getCurrentScore());
         } catch (IOException e) {
             fail("IOException was thrown and caught when it shouldn't have.");
         }
@@ -68,22 +72,8 @@ public class JsonReaderTest {
             assertEquals(2, acc.getWeapons().size());
             assertEquals(WeaponType.HANDGUN, acc.getWeapons().get(0).getWeaponType());
             assertEquals(WeaponType.WALL, acc.getWeapons().get(1).getWeaponType());
-        } catch (IOException e) {
-            fail("IOException was thrown and caught when it shouldn't have.");
-        }
-    }
-
-    @Test
-    void invalidWeaponPassedIn() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralArsenal.json");
-
-        try {
-            Account acc = reader.read();
-            assertEquals("Sebastian", acc.getUsername());
-            assertEquals("123", acc.getPassword());
-            assertEquals(2, acc.getWeapons().size());
-            assertEquals(WeaponType.HANDGUN, acc.getWeapons().get(0).getWeaponType());
-            assertEquals(WeaponType.WALL, acc.getWeapons().get(1).getWeaponType());
+            assertEquals(0, acc.getHighScore());
+            assertEquals(0, acc.getCurrentScore());
         } catch (IOException e) {
             fail("IOException was thrown and caught when it shouldn't have.");
         }

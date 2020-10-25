@@ -16,13 +16,17 @@ public class Account implements Writable {
     private String password;
     private Arsenal arsenal;
     private Player player;
+    private int highScore;
+    private int currentScore;
 
     // EFFECTS: creates an account with no username or password
-    public Account(String username, String password, Arsenal arsenal) {
+    public Account(String username, String password, Arsenal arsenal, int highScore, int currentScore) {
         this.username = username;
         this.password = password;
         this.arsenal = arsenal;
         this.player = arsenal.getPlayer();
+        this.highScore = highScore;
+        this.currentScore = currentScore;
     }
 
     @Override
@@ -32,6 +36,8 @@ public class Account implements Writable {
         json.put("username", username);
         JSONArray arsenal = parseArsenal(this.arsenal);
         json.put("arsenal", arsenal);
+        json.put("highScore", highScore);
+        json.put("currentScore", currentScore);
 
         return json;
     }
@@ -76,6 +82,14 @@ public class Account implements Writable {
 
     public Arsenal getArsenal() {
         return arsenal;
+    }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public int getCurrentScore() {
+        return currentScore;
     }
 
 }

@@ -48,7 +48,9 @@ public class JsonReader {
         String password = jsonObject.getString("password");
         JSONArray arsenalJson = jsonObject.getJSONArray("arsenal");
         Arsenal arsenal = parseArsenal(arsenalJson);
-        Account acc = new Account(username, password, arsenal);
+        int highScore = jsonObject.getInt("highScore");
+        int currentScore = jsonObject.getInt("currentScore");
+        Account acc = new Account(username, password, arsenal, highScore, currentScore);
         return acc;
     }
 

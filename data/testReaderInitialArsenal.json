@@ -1,5 +1,7 @@
 {
   "password": "123",
+  "highScore": 100,
+  "currentScore": 69,
   "username": "Sebastian",
   "arsenal": ["HANDGUN"]
 }

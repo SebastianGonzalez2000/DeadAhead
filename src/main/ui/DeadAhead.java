@@ -72,7 +72,7 @@ public class DeadAhead {
         System.out.println("\nSelect from:");
         System.out.println("\tn -> New Game");
         System.out.println("\tl -> Load Game");
-        System.out.println("\tp -> Saved Gameplay specifications");
+        System.out.println("\tp -> Show saved Gameplay specifications");
         System.out.println("\tq -> quit");
     }
 
@@ -152,10 +152,8 @@ public class DeadAhead {
     // MODIFIES: this
     // EFFECTS: creates a new user account for the game
     private void createNewAccount() {
-
         System.out.println("Enter your new username: ");
         String username = input.next();
-
         System.out.println("Enter your new password: ");
         String password = input.next();
         System.out.println("Enter the same password again: ");
@@ -164,17 +162,14 @@ public class DeadAhead {
             System.out.println("Passwords do not match. Please enter your password again: ");
             secondTry = input.next();
         }
-
-        Account acc = new Account(username, password, new Arsenal(new Player()));
-
-
-        System.out.println("Your account has been created, " + username);
-        createdAccounts.add(acc);
-
+        Account acc = new Account(username, password, new Arsenal(new Player()), 0, 0);
         try {
             jsonWriter.open();
             jsonWriter.write(acc);
             jsonWriter.close();
+            displayedAccount = jsonReader.read();
+            System.out.println("Your account has been created, " + username);
+            createdAccounts.add(acc);
         } catch (IOException e) {
             System.out.println("Unable to create account.");
         }
@@ -183,15 +178,20 @@ public class DeadAhead {
     // EFFECTS: prints to the screen the game specifications of the current
     //          displayed account
     private void printSpecifications() {
-        System.out.println(displayedAccount.getUsername());
-        System.out.println(displayedAccount.getPassword());
 
-        System.out.println("Weapons in arsenal: ");
+        try {
+            System.out.println("Welcome back, " + displayedAccount.getUsername() + ".");
+            System.out.println("Your secret password is: " + displayedAccount.getPassword());
+            System.out.println("Your current score is: " + displayedAccount.getCurrentScore());
+            System.out.println("Your high score is: " + displayedAccount.getHighScore());
 
-        for (Weapon w : displayedAccount.getWeapons()) {
-            System.out.println(w.getWeaponType().toString());
+            System.out.println("Weapons in arsenal: ");
+
+            for (Weapon w : displayedAccount.getWeapons()) {
+                System.out.println(w.getWeaponType().toString());
+            }
+        } catch (NullPointerException e) {
+            System.out.println("You have not logged into your account.");
         }
-
-        // consider printing difficulty or weapons available
     }
 }

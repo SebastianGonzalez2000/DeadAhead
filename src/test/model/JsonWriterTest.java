@@ -15,7 +15,7 @@ public class JsonWriterTest {
     @Test
     void testWriterInvalidFile() {
         try {
-            Account acc = new Account("Sebastian", "123", new Arsenal(new Player()));
+            Account acc = new Account("Sebastian", "123", new Arsenal(new Player()), 0, 0);
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
@@ -27,18 +27,20 @@ public class JsonWriterTest {
     @Test
     void testWriterHandGunArsenal() {
         try {
-            Account acc = new Account("Sebastian", "123", new Arsenal(new Player()));
-            JsonWriter writer = new JsonWriter("./data/testWriterInitialArsenal.json");
+            Account acc = new Account("Sebastian", "123", new Arsenal(new Player()), 0, 0);
+            JsonWriter writer = new JsonWriter("./data/testWriterHandGunArsenal.json");
             writer.open();
             writer.write(acc);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterInitialArsenal.json");
+            JsonReader reader = new JsonReader("./data/testWriterHandGunArsenal.json");
             acc = reader.read();
             assertEquals("Sebastian", acc.getUsername());
             assertEquals("123", acc.getPassword());
             assertEquals(1, acc.getWeapons().size());
             assertEquals(WeaponType.HANDGUN, acc.getWeapons().get(0).getWeaponType());
+            assertEquals(0, acc.getHighScore());
+            assertEquals(0, acc.getCurrentScore());
 
         } catch (IOException e) {
             fail("IOException was incorrectly caught.");
@@ -49,7 +51,7 @@ public class JsonWriterTest {
     void testWriterFullArsenal() {
         try {
             Player player = new Player();
-            Account acc = new Account("Sebastian", "123", new Arsenal(player));
+            Account acc = new Account("Sebastian", "123", new Arsenal(player), 100, 69);
             acc.getArsenal().collectWeapon(new ShotGun(player));
             acc.getArsenal().collectWeapon(new Uzi(player));
             acc.getArsenal().collectWeapon(new RocketLauncher(player));
@@ -70,6 +72,8 @@ public class JsonWriterTest {
             assertEquals(WeaponType.UZI, acc.getWeapons().get(2).getWeaponType());
             assertEquals(WeaponType.LAUNCHER, acc.getWeapons().get(3).getWeaponType());
             assertEquals(WeaponType.MINE, acc.getWeapons().get(4).getWeaponType());
+            assertEquals(100, acc.getHighScore());
+            assertEquals(69, acc.getCurrentScore());
 
         } catch (IOException e) {
             fail("IOException was incorrectly caught.");
