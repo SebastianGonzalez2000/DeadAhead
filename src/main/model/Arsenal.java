@@ -74,4 +74,11 @@ public class Arsenal {
     }
 
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public List<Weapon> getArsenal() {
+        return arsenal;
+    }
 }

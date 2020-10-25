@@ -1,5 +1,12 @@
 package ui;
 
+import model.Arsenal;
+import model.Player;
+import model.Weapon;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,12 +14,18 @@ import java.util.Scanner;
 // DeadAhead application
 
 public class DeadAhead {
+    private static final String JSON_STORE = "./data/account.json";
     private Scanner input;
+    private Account displayedAccount;
     private List<Account> createdAccounts;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    // EFFECTS: runs the DeadAhead game
+    // EFFECTS: constructs the account and runs the DeadAhead game
     public DeadAhead() {
         createdAccounts = new ArrayList<>();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runGame();
     }
 
@@ -57,8 +70,9 @@ public class DeadAhead {
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
-        System.out.println("\tn -> create account");
-        System.out.println("\tl -> login");
+        System.out.println("\tn -> New Game");
+        System.out.println("\tl -> Load Game");
+        System.out.println("\tp -> Saved Gameplay specifications");
         System.out.println("\tq -> quit");
     }
 
@@ -72,6 +86,8 @@ public class DeadAhead {
             createNewAccount();
         } else if (command.equals("l")) {
             verifyLogIn();
+        } else if (command.equals("p")) {
+            printSpecifications();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -93,30 +109,42 @@ public class DeadAhead {
         System.out.println("Enter your password: ");
         String password = input.next();
 
-        while (!checkValidPassword(username, password)) {
+        while (!checkValidPassword(password)) {
             System.out.println("Incorrect password. Please try again: ");
             password = input.next();
         }
 
-        System.out.println("Welcome back, " + username + ".");
+        try {
+            displayedAccount = jsonReader.read();
+            System.out.println("Welcome back, " + username + ".");
+        } catch (IOException e) {
+            System.out.println("Unable to find account.");
+        }
     }
 
-    private boolean checkValidPassword(String username, String password) {
-        for (Account acc : createdAccounts) {
-            if (acc.getUsername().equals(username)) {
-                return acc.getPassword().equals(password);
-            }
+    // EFFECTS: returns true if password matches the password set for
+    //          the current displayed account.
+    private boolean checkValidPassword(String password) {
+
+        try {
+            Account account = jsonReader.read();
+            return account.getPassword().equals(password);
+        } catch (IOException e) {
+            System.out.println("Unable to find account.");
         }
+
         return false;
     }
 
-
-
+    // EFFECTS: returns true if the username given matches the username set
+    //          for the displayed account
     private boolean existingUsername(String username) {
-        for (Account acc : createdAccounts) {
-            if (acc.getUsername().equals(username)) {
-                return true;
-            }
+
+        try {
+            Account account = jsonReader.read();
+            return account.getUsername().equals(username);
+        } catch (IOException e) {
+            System.out.println("Unable to find account.");
         }
         return false;
     }
@@ -124,10 +152,10 @@ public class DeadAhead {
     // MODIFIES: this
     // EFFECTS: creates a new user account for the game
     private void createNewAccount() {
-        Account acc = new Account();
+
         System.out.println("Enter your new username: ");
         String username = input.next();
-        acc.setUsername(username);
+
         System.out.println("Enter your new password: ");
         String password = input.next();
         System.out.println("Enter the same password again: ");
@@ -136,8 +164,34 @@ public class DeadAhead {
             System.out.println("Passwords do not match. Please enter your password again: ");
             secondTry = input.next();
         }
-        acc.setPassword(password);
-        System.out.println("Your account has been created.");
+
+        Account acc = new Account(username, password, new Arsenal(new Player()));
+
+
+        System.out.println("Your account has been created, " + username);
         createdAccounts.add(acc);
+
+        try {
+            jsonWriter.open();
+            jsonWriter.write(acc);
+            jsonWriter.close();
+        } catch (IOException e) {
+            System.out.println("Unable to create account.");
+        }
+    }
+
+    // EFFECTS: prints to the screen the game specifications of the current
+    //          displayed account
+    private void printSpecifications() {
+        System.out.println(displayedAccount.getUsername());
+        System.out.println(displayedAccount.getPassword());
+
+        System.out.println("Weapons in arsenal: ");
+
+        for (Weapon w : displayedAccount.getWeapons()) {
+            System.out.println(w.getWeaponType().toString());
+        }
+
+        // consider printing difficulty or weapons available
     }
 }

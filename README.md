@@ -18,6 +18,8 @@ creativity and technical skills to build meaningful products that I care about a
 that allow me to have hours of fun developing and using. 
 
 **User stories**:
+
+Phase 1:
 - As a user, I would like to be able to collect weapons from the field and
 add them to my weapon inventory.
 - As a user, I would like to change my current weapon for other weapons in
@@ -25,3 +27,7 @@ my inventory.
 - As a user, I would like to be able to create a new account in the game
 - As a user, I would like to be able to log into the game with my username 
 and password
+
+Phase 2:
+- As a user, I would like to save my gameplay and account information to file
+- As a user, I would like to load my gameplay and account information from file 
