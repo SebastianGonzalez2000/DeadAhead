@@ -22,6 +22,7 @@ public class ShotGunTest {
         assertFalse(s.getIsBeingUsed());
         assertEquals(p.getDir(), s.getDir());
         assertEquals(WeaponType.SHOTGUN, s.getWeaponType());
+        assertFalse(s.getIsCollected());
     }
 
     @Test

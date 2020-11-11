@@ -8,7 +8,6 @@ import java.util.Random;
 // represents a zombie enemy from the game
 
 public class Zombie {
-    private static final float speed = 5;
     public static final Color COLOR = new Color(250, 0, 40);
     public static final int SIZE_X = 16;
     public static final int SIZE_Y = 16;
@@ -44,12 +43,12 @@ public class Zombie {
         velX = (float) ((-1.0 / distance) * diffX);
         velY = (float) ((-1.0 / distance) * diffY);
 
-        if (yc <= 0 || yc >= game.HEIGHT - SIZE_Y) {
-            velY *= -1;
-        }
-        if (xc <= 0 || xc >= game.WIDTH - SIZE_X) {
-            velX *= -1;
-        }
+//        if (yc <= 0 || yc >= game.HEIGHT - SIZE_Y) {
+//            velY *= -1;
+//        }
+//        if (xc <= 0 || xc >= game.WIDTH - SIZE_X) {
+//            velX *= -1;
+//        }
         xc += velX;
         yc += velY;
     }

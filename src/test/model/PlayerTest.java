@@ -7,11 +7,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
+    Arsenal a;
     Player p;
 
     @BeforeEach
     public void setup() {
         p = new Player();
+        a = new Arsenal(p);
+        p.setArsenal(a);
     }
 
     @Test
@@ -19,6 +22,9 @@ class PlayerTest {
         assertEquals(Direction.NORTH, p.getDir());
         assertEquals(p.STARTING_XC, p.getX());
         assertEquals(p.STARTING_YC, p.getY());
+        assertEquals(p.getScore(), 0);
+        assertEquals(p.getArsenal(), a);
+        assertEquals(p.getCurrentWeapon().getWeaponType(), WeaponType.HANDGUN);
     }
 
     @Test
@@ -26,6 +32,8 @@ class PlayerTest {
         assertEquals(p.STARTING_XC, p.getX());
         assertEquals(p.STARTING_YC, p.getY());
 
+        p.faceUp();
+        p.setDir(Direction.NORTH);
         p.move();
 
         assertEquals(p.STARTING_XC, p.getX());
@@ -37,7 +45,7 @@ class PlayerTest {
         assertEquals(p.STARTING_XC, p.getX());
         assertEquals(p.STARTING_YC, p.getY());
 
-        p.setDir(Direction.SOUTH);
+        p.faceDown();
         p.move();
 
         assertEquals(p.STARTING_XC, p.getX());
@@ -49,7 +57,7 @@ class PlayerTest {
         assertEquals(p.STARTING_XC, p.getX());
         assertEquals(p.STARTING_YC, p.getY());
 
-        p.setDir(Direction.EAST);
+        p.faceRight();
         p.move();
 
         assertEquals(p.STARTING_XC + p.speed, p.getX());
@@ -61,7 +69,7 @@ class PlayerTest {
         assertEquals(p.STARTING_XC, p.getX());
         assertEquals(p.STARTING_YC, p.getY());
 
-        p.setDir(Direction.WEST);
+        p.faceLeft();
         p.move();
 
         assertEquals(p.STARTING_XC - p.speed, p.getX());

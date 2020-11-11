@@ -13,7 +13,6 @@ public abstract class Bullet {
     protected float yc;
     protected Player player;
     protected Direction dir;
-    protected boolean onScreen;
     public float sizeX;
     public float sizeY;
     protected DeadAhead game;
@@ -27,7 +26,6 @@ public abstract class Bullet {
         xc = player.getX();
         yc = player.getY();
         dir = player.getDir();
-        onScreen = true;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.type = type;
@@ -50,18 +48,6 @@ public abstract class Bullet {
                 break;
             default:
                 xc += SPEED;
-        }
-
-        if (xc < sizeX / 2) {
-            onScreen = false;
-        } else if (xc > DeadAhead.WIDTH - sizeX / 2) {
-            onScreen = false;
-        }
-
-        if (yc < sizeY / 2) {
-            onScreen = false;
-        } else if (yc > DeadAhead.HEIGHT - sizeY / 2) {
-            onScreen = false;
         }
     }
 

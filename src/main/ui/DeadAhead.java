@@ -325,4 +325,8 @@ public class DeadAhead extends JFrame {
             isGameOver = true;
         }
     }
+
+    public void setPlayer(Player p) {
+        this.player = p;
+    }
 }

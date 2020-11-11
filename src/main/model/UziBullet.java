@@ -29,17 +29,5 @@ public class UziBullet extends Bullet {
             default:
                 xc += SPEED;
         }
-
-        if (xc < sizeX / 2) {
-            onScreen = false;
-        } else if (xc > DeadAhead.WIDTH - sizeX / 2) {
-            onScreen = false;
-        }
-
-        if (yc < sizeY / 2) {
-            onScreen = false;
-        } else if (yc > DeadAhead.HEIGHT - sizeY / 2) {
-            onScreen = false;
-        }
     }
 }

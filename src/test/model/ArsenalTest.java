@@ -2,24 +2,31 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ui.Account;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArsenalTest {
     Arsenal a;
     Player p;
+    Account acc;
 
     @BeforeEach
     public void setup() {
         p = new Player();
         a = new Arsenal(p);
+        acc = new Account(
+                "basti", "yameolvide", a, 0, 0, 0, p.MAX_HEALTH);
         p.setArsenal(a);
+        a.setPlayer(p);
+        a.setAccount(acc);
     }
 
     @Test
     public void testConstructor() {
         assertEquals(1, a.getSize());
         assertEquals(WeaponType.HANDGUN, a.getWeapon(0).getWeaponType());
+        assertEquals(a.getPlayer(), p);
     }
 
     @Test
