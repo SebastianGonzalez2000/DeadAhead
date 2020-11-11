@@ -1,7 +1,9 @@
 {
+    "kills": 0,
     "password": "123",
     "highScore": 0,
     "currentScore": 0,
+    "health": 100,
     "username": "Sebastian",
     "arsenal": ["HANDGUN"]
 }

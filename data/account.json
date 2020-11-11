@@ -1,7 +1,9 @@
 {
-    "password": "l",
+    "kills": 0,
+    "password": "yameolvide",
     "highScore": 0,
     "currentScore": 0,
-    "username": "h",
+    "health": 100,
+    "username": "basti",
     "arsenal": ["HANDGUN"]
 }

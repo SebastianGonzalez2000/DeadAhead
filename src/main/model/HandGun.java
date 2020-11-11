@@ -5,7 +5,7 @@ Class representing a regular handgun
  */
 
 public class HandGun extends Weapon {
-    public static final int MAX_AMMO_CAPACITY = 20;
+    public static final int MAX_AMMO_CAPACITY = 100;
 
 
     // EFFECT: Creates a HandGun with max ammo and not being used

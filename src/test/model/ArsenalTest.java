@@ -13,6 +13,7 @@ class ArsenalTest {
     public void setup() {
         p = new Player();
         a = new Arsenal(p);
+        p.setArsenal(a);
     }
 
     @Test
@@ -23,25 +24,22 @@ class ArsenalTest {
 
     @Test
     public void testSwitchWeapon() {
+        assertTrue(a.getWeapon(0).getIsBeingUsed());
+
         a.collectWeapon(new ShotGun(p));
+
+        assertFalse(a.getWeapon(0).getIsBeingUsed());
+        assertTrue(a.getWeapon(1).getIsBeingUsed());
+
+        a.switchWeapon(a.getWeapon(1));
 
         assertTrue(a.getWeapon(0).getIsBeingUsed());
         assertFalse(a.getWeapon(1).getIsBeingUsed());
-
-        a.switchWeapon(a.getWeapon(0));
-
-        assertTrue(a.getWeapon(1).getIsBeingUsed());
-        assertFalse(a.getWeapon(0).getIsBeingUsed());
     }
 
     @Test
     public void testSwitchWeaponGoRound() {
         a.collectWeapon(new ShotGun(p));
-
-        assertTrue(a.getWeapon(0).getIsBeingUsed());
-        assertFalse(a.getWeapon(1).getIsBeingUsed());
-
-        a.switchWeapon(a.getWeapon(0));
 
         assertTrue(a.getWeapon(1).getIsBeingUsed());
         assertFalse(a.getWeapon(0).getIsBeingUsed());
@@ -50,6 +48,11 @@ class ArsenalTest {
 
         assertTrue(a.getWeapon(0).getIsBeingUsed());
         assertFalse(a.getWeapon(1).getIsBeingUsed());
+
+        a.switchWeapon(a.getWeapon(0));
+
+        assertTrue(a.getWeapon(1).getIsBeingUsed());
+        assertFalse(a.getWeapon(0).getIsBeingUsed());
     }
 
     @Test
@@ -59,6 +62,14 @@ class ArsenalTest {
         a.collectWeapon(new LandMine(p));
         a.collectWeapon(new Uzi(p));
 
+        assertFalse(a.getWeapon(0).getIsBeingUsed());
+        assertFalse(a.getWeapon(1).getIsBeingUsed());
+        assertFalse(a.getWeapon(2).getIsBeingUsed());
+        assertFalse(a.getWeapon(3).getIsBeingUsed());
+        assertTrue(a.getWeapon(4).getIsBeingUsed());
+
+        a.switchWeapon(a.getWeapon(4));
+
         assertTrue(a.getWeapon(0).getIsBeingUsed());
         assertFalse(a.getWeapon(1).getIsBeingUsed());
         assertFalse(a.getWeapon(2).getIsBeingUsed());
@@ -67,43 +78,35 @@ class ArsenalTest {
 
         a.switchWeapon(a.getWeapon(0));
 
-        assertTrue(a.getWeapon(1).getIsBeingUsed());
         assertFalse(a.getWeapon(0).getIsBeingUsed());
+        assertTrue(a.getWeapon(1).getIsBeingUsed());
         assertFalse(a.getWeapon(2).getIsBeingUsed());
         assertFalse(a.getWeapon(3).getIsBeingUsed());
         assertFalse(a.getWeapon(4).getIsBeingUsed());
 
         a.switchWeapon(a.getWeapon(1));
 
-        assertTrue(a.getWeapon(2).getIsBeingUsed());
         assertFalse(a.getWeapon(0).getIsBeingUsed());
         assertFalse(a.getWeapon(1).getIsBeingUsed());
+        assertTrue(a.getWeapon(2).getIsBeingUsed());
         assertFalse(a.getWeapon(3).getIsBeingUsed());
         assertFalse(a.getWeapon(4).getIsBeingUsed());
 
         a.switchWeapon(a.getWeapon(2));
 
-        assertTrue(a.getWeapon(3).getIsBeingUsed());
         assertFalse(a.getWeapon(0).getIsBeingUsed());
         assertFalse(a.getWeapon(1).getIsBeingUsed());
         assertFalse(a.getWeapon(2).getIsBeingUsed());
+        assertTrue(a.getWeapon(3).getIsBeingUsed());
         assertFalse(a.getWeapon(4).getIsBeingUsed());
 
         a.switchWeapon(a.getWeapon(3));
 
-        assertTrue(a.getWeapon(4).getIsBeingUsed());
         assertFalse(a.getWeapon(0).getIsBeingUsed());
         assertFalse(a.getWeapon(1).getIsBeingUsed());
         assertFalse(a.getWeapon(2).getIsBeingUsed());
         assertFalse(a.getWeapon(3).getIsBeingUsed());
-
-        a.switchWeapon(a.getWeapon(4));
-
-        assertTrue(a.getWeapon(0).getIsBeingUsed());
-        assertFalse(a.getWeapon(4).getIsBeingUsed());
-        assertFalse(a.getWeapon(1).getIsBeingUsed());
-        assertFalse(a.getWeapon(2).getIsBeingUsed());
-        assertFalse(a.getWeapon(3).getIsBeingUsed());
+        assertTrue(a.getWeapon(4).getIsBeingUsed());
     }
 
     @Test

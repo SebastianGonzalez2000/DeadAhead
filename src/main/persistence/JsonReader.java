@@ -43,14 +43,15 @@ public class JsonReader {
 
     // EFFECTS: parses Account from JSON object and returns it
     private Account parseAccount(JSONObject jsonObject) {
-
         String username = jsonObject.getString("username");
         String password = jsonObject.getString("password");
+        int kills = jsonObject.getInt("kills");
+        int health = jsonObject.getInt("health");
         JSONArray arsenalJson = jsonObject.getJSONArray("arsenal");
         Arsenal arsenal = parseArsenal(arsenalJson);
         int highScore = jsonObject.getInt("highScore");
         int currentScore = jsonObject.getInt("currentScore");
-        Account acc = new Account(username, password, arsenal, highScore, currentScore);
+        Account acc = new Account(username, password, arsenal, highScore, currentScore, kills, health);
         return acc;
     }
 
@@ -59,6 +60,7 @@ public class JsonReader {
     private Arsenal parseArsenal(JSONArray arsenalJSon) {
         Player player = new Player();
         Arsenal arsenal = new Arsenal(player);
+        player.setArsenal(arsenal);
         for (Object json : arsenalJSon) {
             String nextWeapon = (String) json;
             parseWeapon(arsenal, nextWeapon, player);

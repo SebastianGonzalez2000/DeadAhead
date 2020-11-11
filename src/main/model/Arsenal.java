@@ -4,6 +4,9 @@ package model;
 Arsenal representing the collection of weapons the player has available for use.
  */
 
+import ui.Account;
+import ui.GamePanel;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,11 +15,13 @@ public class Arsenal {
 
     private List<Weapon> arsenal;
     private Player player;
+    private Account acc;
+    private GamePanel gp;
 
     // EFFECTS: creates the player's arsenal starting with only a HandGun
     public Arsenal(Player player) {
-        this.player = player;
         this.arsenal = new LinkedList<>();
+        this.player = player;
         HandGun firstWeapon = new HandGun(this.player);
         firstWeapon.setIsBeingUsed(true);
         arsenal.add(firstWeapon);
@@ -44,11 +49,18 @@ public class Arsenal {
         for (Weapon tempW : arsenal) {
             if (w.getWeaponType() == tempW.getWeaponType()) {
                 tempW.reload();
+                getCurrentWeapon().setIsBeingUsed(false);
+                w.setIsBeingUsed(true);
+                arsenal.remove(tempW);
+                arsenal.add(w);
                 return;
             }
         }
         if (getSize() < MAX_ARSENAL_CAPACITY) {
             arsenal.add(w);
+            Weapon currentWeapon = getCurrentWeapon();
+            currentWeapon.setIsBeingUsed(false);
+            w.setIsBeingUsed(true);
         }
     }
 
@@ -61,9 +73,14 @@ public class Arsenal {
             arsenal.remove(w);
             w.setIsBeingUsed(false);
         }
+        arsenal.get(0).setIsBeingUsed(true);
     }
 
     // getters and setters
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
     public int getSize() {
         return arsenal.size();
@@ -80,5 +97,18 @@ public class Arsenal {
 
     public List<Weapon> getArsenal() {
         return arsenal;
+    }
+
+    public Weapon getCurrentWeapon() {
+        for (Weapon w : arsenal) {
+            if (w.isBeingUsed) {
+                return w;
+            }
+        }
+        return null;
+    }
+
+    public void setAccount(Account acc) {
+        this.acc = acc;
     }
 }

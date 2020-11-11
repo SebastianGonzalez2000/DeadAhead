@@ -3,5 +3,7 @@
   "highScore": 100,
   "currentScore": 69,
   "username": "Sebastian",
-  "arsenal": ["HANDGUN"]
+  "arsenal": ["HANDGUN"],
+  "kills": 0,
+  "health": 100
 }

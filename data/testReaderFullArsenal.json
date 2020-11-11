@@ -3,5 +3,7 @@
   "highScore": 0,
   "currentScore": 0,
   "username": "Sebastian",
-  "arsenal": ["HANDGUN", "SHOTGUN", "UZI", "LAUNCHER", "MINE"]
+  "arsenal": ["HANDGUN", "SHOTGUN", "UZI", "LAUNCHER", "MINE"],
+  "kills": 0,
+  "health": 100
 }
