@@ -22,7 +22,9 @@ public class Account implements Writable {
     private int currentHealth;
 
     // EFFECTS: creates an account with given username, password, arsenal, high score, and current score
-    public Account(String username, String password, Arsenal arsenal, int highScore, int currentScore, int kills, int health) {
+    public Account(
+            String username,
+                   String password, Arsenal arsenal, int highScore, int currentScore, int kills, int health) {
         this.username = username;
         this.password = password;
         this.arsenal = arsenal;

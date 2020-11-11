@@ -118,7 +118,7 @@ public class GamePanel extends JPanel {
         g.drawRect(menu.BUTTON_X, menu.SAVE_BUTTON_Y, menu.BUTTON_WIDTH, menu.BUTTON_HEIGHT);
         g.drawString(
                 "Save",
-                33 * game.WIDTH / 75,
+                65 * game.WIDTH / 150,
                 menu.SAVE_BUTTON_Y + (2 * menu.BUTTON_HEIGHT / 3));
         g.drawRect(menu.BUTTON_X, menu.NEW_BUTTON_Y, menu.BUTTON_WIDTH, menu.BUTTON_HEIGHT);
         g.drawString(
@@ -155,10 +155,10 @@ public class GamePanel extends JPanel {
         g.drawString("Dead Ahead", 2 * game.WIDTH / 10, game.HEIGHT / 3);
         g.setFont(button);
         g.setColor(Color.white);
-        g.drawRect(menu.BUTTON_X, menu.SAVE_BUTTON_Y, menu.BUTTON_WIDTH, menu.BUTTON_HEIGHT);
+        g.drawRect(menu.BUTTON_X, menu.RETRY_BUTTON_Y, menu.BUTTON_WIDTH, menu.BUTTON_HEIGHT);
         g.drawString("Retry",
-                33 * game.WIDTH / 75,
-                menu.SAVE_BUTTON_Y + (2 * menu.BUTTON_HEIGHT / 3));
+                65 * game.WIDTH / 150,
+                menu.RETRY_BUTTON_Y + (2 * menu.BUTTON_HEIGHT / 3));
     }
 
     // EFFECTS: Draws weapons that the player can collect on the floor
