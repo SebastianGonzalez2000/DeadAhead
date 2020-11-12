@@ -35,8 +35,8 @@ public class ZombieTestClass {
         float xc = z.getX();
         float yc = z.getY();
 
-        float diffX = xc - player.getX() - Player.SIZE_X / 2;
-        float diffY = yc - player.getY() - Player.SIZE_Y / 2;
+        float diffX = xc - player.getX() - (float) Player.SIZE_X / 2;
+        float diffY = yc - player.getY() - (float) Player.SIZE_Y / 2;
         float distance = (float) Math.sqrt(
                 ((xc - player.getX()) * (xc - player.getX())) + ((yc - player.getY()) * (yc - player.getY())));
 
