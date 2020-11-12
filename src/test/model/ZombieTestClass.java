@@ -6,7 +6,7 @@ import ui.DeadAhead;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ZombieTest {
+public class ZombieTestClass {
 
     private Zombie z;
     private DeadAhead game;
@@ -20,14 +20,14 @@ public class ZombieTest {
         z = new Zombie(game);
         z.setX(1);
         z.setY(2);
-        z.setHealth(z.MAX_HEALTH);
+        z.setHealth(Zombie.MAX_HEALTH);
     }
 
     @Test
     public void testConstructor() {
         assertEquals(1, z.getX());
         assertEquals(2, z.getY());
-        assertEquals(z.MAX_HEALTH, z.getHealth());
+        assertEquals(Zombie.MAX_HEALTH, z.getHealth());
     }
 
     @Test
@@ -35,8 +35,8 @@ public class ZombieTest {
         float xc = z.getX();
         float yc = z.getY();
 
-        float diffX = xc - player.getX() - player.SIZE_X / 2;
-        float diffY = yc - player.getY() - player.SIZE_Y / 2;
+        float diffX = xc - player.getX() - Player.SIZE_X / 2;
+        float diffY = yc - player.getY() - Player.SIZE_Y / 2;
         float distance = (float) Math.sqrt(
                 ((xc - player.getX()) * (xc - player.getX())) + ((yc - player.getY()) * (yc - player.getY())));
 
@@ -51,7 +51,7 @@ public class ZombieTest {
 
     @Test
     public void testSetX() {
-        assertEquals(player.STARTING_XC, player.getX());
+        assertEquals(Player.STARTING_XC, player.getX());
 
         player.setX(120);
 
@@ -60,7 +60,7 @@ public class ZombieTest {
 
     @Test
     public void testSetY() {
-        assertEquals(player.STARTING_YC, player.getY());
+        assertEquals(Player.STARTING_YC, player.getY());
 
         player.setY(120);
 
