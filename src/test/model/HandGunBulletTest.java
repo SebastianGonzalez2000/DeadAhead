@@ -9,14 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HandGunBulletTest {
 
     private HandGunBullet b;
-    private DeadAhead game;
     private Player p;
 
     @BeforeEach
     public void setUp() {
-        game = new DeadAhead();
         p = new Player();
-        b = new HandGunBullet(game, p);
+        b = new HandGunBullet(p);
     }
 
     @Test

@@ -10,8 +10,8 @@ public class Rocket extends Bullet {
     public static final int DAMAGE = 50;
 
     // EFFECTS: creates a rocket object
-    public Rocket(DeadAhead game, Player player) {
-        super(game, player, SIZE_X, SIZE_Y, WeaponType.LAUNCHER, DAMAGE);
+    public Rocket(Player player) {
+        super(player, SIZE_X, SIZE_Y, WeaponType.LAUNCHER, DAMAGE);
     }
 
     @Override

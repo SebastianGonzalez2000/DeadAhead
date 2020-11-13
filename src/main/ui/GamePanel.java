@@ -302,13 +302,13 @@ public class GamePanel extends JPanel {
         }
         currentWeapon.shoot();
         if (currentWeapon.getWeaponType() == WeaponType.HANDGUN) {
-            bullets.add(new HandGunBullet(game, player));
+            bullets.add(new HandGunBullet(player));
         } else if (currentWeapon.getWeaponType() == WeaponType.SHOTGUN) {
-            bullets.add(new ShotGunBullet(game, player));
+            bullets.add(new ShotGunBullet(player));
         } else if (currentWeapon.getWeaponType() == WeaponType.UZI) {
-            bullets.add(new UziBullet(game, player));
+            bullets.add(new UziBullet(player));
         } else if (currentWeapon.getWeaponType() == WeaponType.LAUNCHER) {
-            bullets.add(new Rocket(game, player));
+            bullets.add(new Rocket(player));
         }
     }
 

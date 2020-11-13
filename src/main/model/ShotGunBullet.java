@@ -10,8 +10,8 @@ public class ShotGunBullet extends Bullet {
     public static final int DAMAGE = 10;
 
 
-    public ShotGunBullet(DeadAhead game, Player player) {
-        super(game, player, SIZE_X, SIZE_Y, WeaponType.SHOTGUN, DAMAGE);
+    public ShotGunBullet(Player player) {
+        super(player, SIZE_X, SIZE_Y, WeaponType.SHOTGUN, DAMAGE);
     }
 
     @Override

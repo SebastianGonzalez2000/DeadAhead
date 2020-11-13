@@ -10,8 +10,8 @@ public class UziBullet extends Bullet {
     public static final int DAMAGE = 25;
 
     // EFFECTS: creates an uzi bullet object
-    public UziBullet(DeadAhead game, Player player) {
-        super(game, player, SIZE_X, SIZE_Y, WeaponType.UZI, DAMAGE);
+    public UziBullet(Player player) {
+        super(player, SIZE_X, SIZE_Y, WeaponType.UZI, DAMAGE);
     }
 
     @Override

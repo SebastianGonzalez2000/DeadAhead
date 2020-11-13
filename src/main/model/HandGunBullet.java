@@ -10,8 +10,8 @@ public class HandGunBullet extends Bullet {
 
 
     // EFFECTS: creates a handgun bullet object
-    public HandGunBullet(DeadAhead game, Player player) {
-        super(game, player, SIZE_X, SIZE_Y, WeaponType.HANDGUN, DAMAGE);
+    public HandGunBullet(Player player) {
+        super(player, SIZE_X, SIZE_Y, WeaponType.HANDGUN, DAMAGE);
     }
 
 }

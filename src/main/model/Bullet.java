@@ -15,13 +15,11 @@ public abstract class Bullet {
     protected Direction dir;
     public float sizeX;
     public float sizeY;
-    protected DeadAhead game;
     protected WeaponType type;
     protected int damage;
 
     // EFFECTS: Creates a generic bullet
-    public Bullet(DeadAhead game, Player player, float sizeX, float sizeY, WeaponType type, int damage) {
-        this.game = game;
+    public Bullet(Player player, float sizeX, float sizeY, WeaponType type, int damage) {
         this.player = player;
         xc = player.getX();
         yc = player.getY();
