@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ZombieTest {
 
     private Zombie z;
-    private DeadAhead game;
     private Player player;
+    private DeadAhead game;
 
     @BeforeEach
     public void setUpMethod() {
         player = new Player();
-        game = new DeadAhead();
+        game = new DeadAhead("test");
         game.setPlayer(player);
         z = new Zombie(game);
         z.setX(1);

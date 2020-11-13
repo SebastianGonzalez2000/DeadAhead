@@ -56,6 +56,11 @@ public class DeadAhead extends JFrame {
         addTimer();
     }
 
+    // overloaded constructor for test
+    public DeadAhead(String test) {
+
+    }
+
     // The init method implementation was extracted from the TellerApp project provided
     // in CPSC210. I did not write this method but it is still fair use according to the de
     // project restrictions.
