@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShotGunTest {
     ShotGun s;
@@ -23,6 +24,8 @@ public class ShotGunTest {
         assertEquals(p.getDir(), s.getDir());
         assertEquals(WeaponType.SHOTGUN, s.getWeaponType());
         assertFalse(s.getIsCollected());
+        assertTrue(0 <= s.getX() && s.getX() <= 800);
+        assertTrue(0 <= s.getY() && s.getY() <= 600);
     }
 
     @Test
