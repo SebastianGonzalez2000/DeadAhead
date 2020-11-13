@@ -7,93 +7,128 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
-    Arsenal a;
-    Player p;
+    Arsenal a1;
+    Player p1;
+    Arsenal a2;
+    Player p2;
 
     @BeforeEach
     public void setup() {
-        p = new Player();
-        a = new Arsenal(p);
-        p.setArsenal(a);
+        p1 = new Player();
+        a1 = new Arsenal(p1);
+        p1.setArsenal(a1);
+
+        p2 = new Player();
+        a2 = new Arsenal(p2);
+        p2.setArsenal(a2);
+        a2.getCurrentWeapon().setIsBeingUsed(false);
     }
 
     @Test
     public void testConstructor() {
-        assertEquals(Direction.NORTH, p.getDir());
-        assertEquals(p.STARTING_XC, p.getX());
-        assertEquals(p.STARTING_YC, p.getY());
-        assertEquals(p.getScore(), 0);
-        assertEquals(p.getArsenal(), a);
-        assertEquals(p.getCurrentWeapon().getWeaponType(), WeaponType.HANDGUN);
+        assertEquals(Direction.NORTH, p1.getDir());
+        assertEquals(p1.STARTING_XC, p1.getX());
+        assertEquals(p1.STARTING_YC, p1.getY());
+        assertEquals(p1.getScore(), 0);
+        assertEquals(p1.getArsenal(), a1);
+        assertEquals(p1.getCurrentWeapon().getWeaponType(), WeaponType.HANDGUN);
+        assertEquals(p2.getCurrentWeapon(), null);
     }
 
     @Test
     public void testMoveNorth() {
-        assertEquals(p.STARTING_XC, p.getX());
-        assertEquals(p.STARTING_YC, p.getY());
+        assertEquals(p1.STARTING_XC, p1.getX());
+        assertEquals(p1.STARTING_YC, p1.getY());
 
-        p.faceUp();
-        p.setDir(Direction.NORTH);
-        p.move();
+        p1.faceUp();
+        p1.setDir(Direction.NORTH);
+        p1.move();
 
-        assertEquals(p.STARTING_XC, p.getX());
-        assertEquals(p.STARTING_YC - p.speed, p.getY());
+        assertEquals(p1.STARTING_XC, p1.getX());
+        assertEquals(p1.STARTING_YC - p1.speed, p1.getY());
     }
 
     @Test
     public void testMoveSouth() {
-        assertEquals(p.STARTING_XC, p.getX());
-        assertEquals(p.STARTING_YC, p.getY());
+        assertEquals(p1.STARTING_XC, p1.getX());
+        assertEquals(p1.STARTING_YC, p1.getY());
 
-        p.faceDown();
-        p.move();
+        p1.faceDown();
+        p1.move();
 
-        assertEquals(p.STARTING_XC, p.getX());
-        assertEquals(p.STARTING_YC + p.speed, p.getY());
+        assertEquals(p1.STARTING_XC, p1.getX());
+        assertEquals(p1.STARTING_YC + p1.speed, p1.getY());
     }
 
     @Test
     public void testMoveEast() {
-        assertEquals(p.STARTING_XC, p.getX());
-        assertEquals(p.STARTING_YC, p.getY());
+        assertEquals(p1.STARTING_XC, p1.getX());
+        assertEquals(p1.STARTING_YC, p1.getY());
 
-        p.faceRight();
-        p.move();
+        p1.faceRight();
+        p1.move();
 
-        assertEquals(p.STARTING_XC + p.speed, p.getX());
-        assertEquals(p.STARTING_YC, p.getY());
+        assertEquals(p1.STARTING_XC + p1.speed, p1.getX());
+        assertEquals(p1.STARTING_YC, p1.getY());
     }
 
     @Test
     public void testMoveWest() {
-        assertEquals(p.STARTING_XC, p.getX());
-        assertEquals(p.STARTING_YC, p.getY());
+        assertEquals(p1.STARTING_XC, p1.getX());
+        assertEquals(p1.STARTING_YC, p1.getY());
 
-        p.faceLeft();
-        p.move();
+        p1.faceLeft();
+        p1.move();
 
-        assertEquals(p.STARTING_XC - p.speed, p.getX());
-        assertEquals(p.STARTING_YC, p.getY());
+        assertEquals(p1.STARTING_XC - p1.speed, p1.getX());
+        assertEquals(p1.STARTING_YC, p1.getY());
     }
 
     // tests for getters and setters for completion
 
     @Test
     public void testSetX() {
-        assertEquals(p.STARTING_XC, p.getX());
+        assertEquals(p1.STARTING_XC, p1.getX());
 
-        p.setX(120);
+        p1.setX(120);
 
-        assertEquals(120, p.getX());
+        assertEquals(120, p1.getX());
     }
 
     @Test
     public void testSetY() {
-        assertEquals(p.STARTING_YC, p.getY());
+        assertEquals(p1.STARTING_YC, p1.getY());
 
-        p.setY(120);
+        p1.setY(120);
 
-        assertEquals(120, p.getY());
+        assertEquals(120, p1.getY());
+    }
+
+    @Test
+    public void testReachBounds() {
+        p1.setX(p1.SIZE_X / 2 - 1);
+        p1.faceLeft();
+        p1.move();
+
+        assertEquals(p1.getX(), p1.SIZE_X / 2);
+
+        p1.setX(800 + 1);
+        p1.faceRight();
+        p1.move();
+
+        assertEquals(p1.getX(), 800 - p1.SIZE_X / 2);
+
+        p1.setY(p1.SIZE_Y / 2 - 1);
+        p1.faceUp();
+        p1.move();
+
+        assertEquals(p1.getY(), p1.SIZE_Y / 2);
+
+        p1.setY(600 + 1);
+        p1.faceDown();
+        p1.move();
+
+        assertEquals(p1.getY(), 600 - p1.SIZE_Y / 2);
     }
 
 }

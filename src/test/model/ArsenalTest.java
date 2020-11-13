@@ -11,6 +11,9 @@ class ArsenalTest {
     Player p;
     Account acc;
 
+    Arsenal a2;
+    Player p2;
+
     @BeforeEach
     public void setup() {
         p = new Player();
@@ -20,6 +23,12 @@ class ArsenalTest {
         p.setArsenal(a);
         a.setPlayer(p);
         a.setAccount(acc);
+
+        p2 = new Player();
+        a2 = new Arsenal(p2);
+        p2.setArsenal(a2);
+        a2.setPlayer(p2);
+        a2.getCurrentWeapon().setIsBeingUsed(false);
     }
 
     @Test
@@ -27,6 +36,7 @@ class ArsenalTest {
         assertEquals(1, a.getSize());
         assertEquals(WeaponType.HANDGUN, a.getWeapon(0).getWeaponType());
         assertEquals(a.getPlayer(), p);
+        assertEquals(a2.getCurrentWeapon(), null);
     }
 
     @Test
