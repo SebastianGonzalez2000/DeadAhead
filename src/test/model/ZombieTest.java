@@ -6,7 +6,7 @@ import ui.DeadAhead;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ZombieTestClass {
+public class ZombieTest {
 
     private Zombie z;
     private DeadAhead game;
