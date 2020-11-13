@@ -49,7 +49,7 @@ public class GamePanel extends JPanel {
     public void generateZombies() {
         zombies = new ArrayList<>();
         for (int i = 0;i < 10;i++) {
-            zombies.add(new Zombie(game));
+            zombies.add(new Zombie(game.getPlayer(), game.WIDTH, game.HEIGHT));
         }
     }
 

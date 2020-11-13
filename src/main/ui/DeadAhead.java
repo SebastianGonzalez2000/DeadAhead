@@ -222,7 +222,7 @@ public class DeadAhead extends JFrame {
             factor = 1;
         }
         if (rand.nextInt(60 / factor) == 1) {
-            gp.zombies.add(new Zombie(this));
+            gp.zombies.add(new Zombie(this.player, WIDTH, HEIGHT));
         }
     }
 

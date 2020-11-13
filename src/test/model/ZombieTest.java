@@ -10,14 +10,11 @@ public class ZombieTest {
 
     private Zombie z;
     private Player player;
-    private DeadAhead game;
 
     @BeforeEach
     public void setUpMethod() {
         player = new Player();
-        game = new DeadAhead("test");
-        game.setPlayer(player);
-        z = new Zombie(game);
+        z = new Zombie(player, 800, 600);
         z.setX(1);
         z.setY(2);
         z.setHealth(Zombie.MAX_HEALTH);

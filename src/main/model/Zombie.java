@@ -18,17 +18,15 @@ public class Zombie {
     private float velX;
     private float velY;
     private ID id = ID.ZOMBIE;
-    private DeadAhead game;
     private Player player;
     private int health;
     Random rand = new Random();
 
     // EFFECTS: creates a zombie object
-    public Zombie(DeadAhead game) {
-        this.game = game;
-        this.player = game.player;
-        xc = rand.nextInt(game.WIDTH);
-        yc = rand.nextInt(game.HEIGHT);
+    public Zombie(Player player, int width, int height) {
+        this.player = player;
+        xc = rand.nextInt(width);
+        yc = rand.nextInt(height);
         health = MAX_HEALTH;
     }
 
