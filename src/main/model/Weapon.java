@@ -47,12 +47,12 @@ public abstract class Weapon {
             return false;
         }
         Weapon weapon = (Weapon) o;
-        return sizeX == weapon.sizeX && sizeY == weapon.sizeY && weaponType == weapon.weaponType;
+        return weaponType == weapon.weaponType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(weaponType, sizeX, sizeY);
+        return Objects.hash(weaponType);
     }
 
     public void setIsBeingUsed(boolean isBeingUsed) {
