@@ -9,6 +9,9 @@ class HandGunTest {
 
     HandGun h1;
     HandGun h2;
+    ShotGun s;
+    Uzi u;
+    RocketLauncher rl;
     Player p;
 
     @BeforeEach
@@ -16,6 +19,9 @@ class HandGunTest {
         p = new Player();
         h1 = new HandGun(p);
         h2 = new HandGun(p);
+        s = new ShotGun(p);
+        u = new Uzi(p);
+        rl = new RocketLauncher(p);
         h1.setIsCollected(true);
     }
 
@@ -26,6 +32,10 @@ class HandGunTest {
         assertEquals(p.getDir(), h1.getDir());
         assertEquals(WeaponType.HANDGUN, h1.getWeaponType());
         assertTrue(h1.equals(h2));
+        assertFalse(h1.equals(null));
+        assertFalse(h1.equals(s));
+        assertFalse(h1.equals(u));
+        assertFalse(h1.equals(rl));
         assertEquals(h1.hashCode(), h2.hashCode());
     }
 
