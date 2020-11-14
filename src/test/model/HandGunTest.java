@@ -32,11 +32,10 @@ class HandGunTest {
         assertEquals(p.getDir(), h1.getDir());
         assertEquals(WeaponType.HANDGUN, h1.getWeaponType());
         assertTrue(h1.equals(h2));
-        assertFalse(h1.equals(null));
-        assertFalse(h1.equals(s));
-        assertFalse(h1.equals(u));
-        assertFalse(h1.equals(rl));
         assertEquals(h1.hashCode(), h2.hashCode());
+        h2.setWeaponType(WeaponType.SHOTGUN);
+        assertFalse(h1.equals(h2));
+        assertFalse(h1.equals(null));
     }
 
     @Test

@@ -22,4 +22,8 @@ public class HandGun extends Weapon {
         setAmmo(MAX_AMMO_CAPACITY);
     }
 
+    public void setWeaponType(WeaponType wt) {
+        this.weaponType = wt;
+    }
+
 }
