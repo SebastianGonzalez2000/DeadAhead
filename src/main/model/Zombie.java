@@ -17,7 +17,6 @@ public class Zombie {
     private float yc;
     private float velX;
     private float velY;
-    private ID id = ID.ZOMBIE;
     private Player player;
     private int health;
     Random rand = new Random();

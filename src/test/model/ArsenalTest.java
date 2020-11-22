@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.WeaponNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ui.Account;
@@ -183,7 +184,11 @@ class ArsenalTest {
     @Test
     public void testDropWeaponNotHandGun() {
         a.collectWeapon(new ShotGun(p));
-        a.dropWeapon(a.getWeapon(1));
+        try {
+            a.dropWeapon(a.getWeapon(1));
+        } catch (WeaponNotFoundException e) {
+            fail("Exception was thrown when it should not have been thrown.");
+        }
 
         assertEquals(1, a.getSize());
         assertEquals(WeaponType.HANDGUN, a.getWeapon(0).getWeaponType());
@@ -191,10 +196,24 @@ class ArsenalTest {
 
     @Test
     public void testDropWeaponHandGun() {
-        a.dropWeapon(a.getWeapon(0));
+        try {
+            a.dropWeapon(a.getWeapon(0));
+        } catch (WeaponNotFoundException e) {
+            fail("Exception was thrown when it should not have been thrown.");
+        }
 
         assertEquals(1, a.getSize());
         assertEquals(WeaponType.HANDGUN, a.getWeapon(0).getWeaponType());
+    }
+
+    @Test
+    public void testDropWeaponNotThere() {
+        try {
+            a.dropWeapon(new ShotGun(p));
+            fail("Exception should have been thrown.");
+        } catch (WeaponNotFoundException e) {
+            // pass
+        }
     }
 
 }

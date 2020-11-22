@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.WeaponNotFoundException;
 import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -155,7 +156,11 @@ public class DeadAhead extends JFrame {
         } else if (keyCode == KeyEvent.VK_X) {
             System.exit(0);
         } else if (keyCode == KeyEvent.VK_D) {
-            player.getArsenal().dropWeapon(player.getCurrentWeapon());
+            try {
+                player.getArsenal().dropWeapon(player.getCurrentWeapon());
+            } catch (WeaponNotFoundException e) {
+                return;
+            }
         } else if (keyCode == KeyEvent.VK_P) {
             gp.pauseGame();
         } else {

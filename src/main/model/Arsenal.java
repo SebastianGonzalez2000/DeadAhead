@@ -4,6 +4,7 @@ package model;
 Arsenal representing the collection of weapons the player has available for use.
  */
 
+import exceptions.WeaponNotFoundException;
 import ui.Account;
 import ui.GamePanel;
 
@@ -16,7 +17,6 @@ public class Arsenal {
     private List<Weapon> arsenal;
     private Player player;
     private Account acc;
-    private GamePanel gp;
 
     // EFFECTS: creates the player's arsenal starting with only a HandGun
     public Arsenal(Player player) {
@@ -64,11 +64,13 @@ public class Arsenal {
         }
     }
 
-    // REQUIRES: w has to be in arsenal
     // MODIFIES: this, w
     // EFFECTS: removes w from arsenal and sets w.isBeingUsed to false. Unless it is a handgun
     //          because this one cannot be dropped
-    public void dropWeapon(Weapon w) {
+    public void dropWeapon(Weapon w) throws WeaponNotFoundException {
+        if (!arsenal.contains(w)) {
+            throw new WeaponNotFoundException();
+        }
         if (w.getWeaponType() != WeaponType.HANDGUN) {
             arsenal.remove(w);
             w.setIsBeingUsed(false);
